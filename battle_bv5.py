@@ -10,42 +10,39 @@ fps = 60
 
 #game window
 bottom_panel = 200
-console_panel = 600  # New: side console width
-screen_width = 800 + console_panel  # Expanded width for console
-screen_height = 400 + bottom_panel
+screen_width = 800
+screen_height = 600 + bottom_panel
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Battle')
 
 #define fonts
-font = pygame.font.SysFont('Times New Roman', 26)
-console_font = pygame.font.SysFont('Courier', 12)  # Monospace font for console
+font = pygame.font.SysFont('Arial', 26, bold = True)
 
 #define colours
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GRAY = (64, 64, 64)  # Dark gray for console background
-YELLOW = (255, 255, 0)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
 
-# Game console for messages and logging
-game_console = []  # List to store console messages
-max_console_lines = 35  # Maximum lines to show in console
 
-#load images - MOVED BEFORE SETUP
 #Player Images
 player_warrior_img = pygame.image.load('img/player_warrior.png').convert_alpha()
 player_tank_img = pygame.image.load('img/player_tank.png').convert_alpha()
+
 #Scaling
 player_warrior_img = pygame.transform.scale(player_warrior_img, (60, 80))
 player_tank_img = pygame.transform.scale(player_tank_img, (60, 80))
-#AI_img
+
+#AI Enemy Images
 ai_warrior_img = pygame.image.load('img/ai_warrior.png').convert_alpha()
 ai_tank_img = pygame.image.load('img/ai_tank.png').convert_alpha()
+
 #Scaling
 ai_warrior_img = pygame.transform.scale(ai_warrior_img, (60, 80))
 ai_tank_img = pygame.transform.scale(ai_tank_img, (60, 80))
+
 #background image
 background_img = pygame.image.load('img/Background/bg_swamp800.png').convert_alpha()
 #panel image
@@ -58,68 +55,16 @@ defeat_img = pygame.image.load('img/Icons/defeat.png').convert_alpha()
 #sword image
 sword_img = pygame.image.load('img/Icons/sword.png').convert_alpha()
 
-def log_message(message):
-    """Add message to game console and log file"""
-    import datetime
-    
-    # Add timestamp
-    timestamp = datetime.datetime.now().strftime("%H:%M:%S")
-    console_message = f"[{timestamp}] {message}"
-    
-    # Add to console display
-    game_console.append(console_message)
-    
-    # Keep only recent messages for display
-    if len(game_console) > max_console_lines:
-        game_console.pop(0)
-    
-    # Write to log file
-    try:
-        with open("game_log.txt", "a", encoding="utf-8") as log_file:
-            log_file.write(console_message + "\n")
-    except Exception as e:
-        print(f"Error writing to log file: {e}")
-
-def draw_console():
-    """Draw the game console panel"""
-    console_x = 800  # Start after main game area
-    console_y = 0
-    console_width = console_panel
-    console_height = screen_height
-    
-    # Draw console background
-    pygame.draw.rect(screen, GRAY, (console_x, console_y, console_width, console_height))
-    pygame.draw.rect(screen, WHITE, (console_x, console_y, console_width, console_height), 2)
-    
-    # Draw console title
-    title_text = pygame.font.SysFont('Arial', 18, bold=True).render("BATTLE GAME LOG", True, YELLOW)
-    screen.blit(title_text, (console_x + 10, 10))
-    
-    # Draw console messages
-    y_offset = 40
-    line_height = 13
-    
-    for i, message in enumerate(game_console):
-        y_pos = y_offset + (i * line_height)
-        if y_pos < console_height - 20:  # Don't overflow
-            # Trim message if too long for display
-            if len(message) > 42:
-                display_message = message[:39] + "..."
-            else:
-                display_message = message
-                
-            text_surface = console_font.render(display_message, True, WHITE)
-            screen.blit(text_surface, (console_x + 5, y_pos))
-
 def player_team_setup():
     """Setup player team with console input"""
     print("=== TEAM SETUP ===")
     print("You will create a team of 3 units.")
-    print("Each unit can be either a Warrior or Tanker.")
+    print("Each unit can be either a Warrior or Tank.")
     print()
     
-    # Get player name once
+    # Get player name
     while True:
+        global player_name
         player_name = input("Enter your name: ").strip()
         if player_name:
             break
@@ -137,7 +82,7 @@ def player_team_setup():
         while True:
             print("Choose profession:")
             print("1. Warrior (High Attack: 5-20, Low Defense: 1-10)")
-            print("2. Tanker (Low Attack: 1-10, High Defense: 5-15)")
+            print("2. Tank (Low Attack: 1-10, High Defense: 5-15)")
             choice = input("Enter 1 or 2: ").strip()
             
             if choice == "1":
@@ -262,7 +207,6 @@ class Fighter:
         if target.hp <= 0:
             target.hp = 0
             target.alive = False
-            log_message(f"{target.name} has been defeated!")
         
         # Experience gain (assignment requirements)
         # Attacker gains EXP based on damage dealt
@@ -276,12 +220,10 @@ class Fighter:
             # Target gains extra 20% EXP
             bonus_exp = int(target.def_stat * 0.2)
             target.gain_exp(bonus_exp)
-            log_message(f"{target.name} gains bonus EXP for taking heavy damage!")
         elif damage <= 0:
             # Target gains extra 50% EXP (shouldn't happen with min damage 1)
             bonus_exp = int(target.def_stat * 0.5)
             target.gain_exp(bonus_exp)
-            log_message(f"{target.name} gains bonus EXP for strong defense!")
         
         return damage
     
@@ -292,7 +234,7 @@ class Fighter:
         while self.exp >= 100:
             self.rank += 1
             self.exp -= 100
-            log_message(f"{self.name} leveled up! Now Rank {self.rank}")
+            print(f"{self.name} leveled up! Now Rank {self.rank}")
     
     def reset(self):
         # Reset for new game
@@ -356,7 +298,7 @@ def handle_unit_selection(pos, clicked):
                 selected_unit = unit
                 unit.selected = True
                 game_state = "select_target"
-                log_message(f"Selected {unit.name} to attack with.")
+                print(f"Selected {unit.name} to attack with. Now click an enemy unit.")
                 return
     
     elif game_state == "select_target":
@@ -367,10 +309,8 @@ def handle_unit_selection(pos, clicked):
                     # Execute attack
                     damage = selected_unit.attack(unit)
                     player_attacks_this_round += 1
-                    
-                    # Log the attack
-                    log_message(f"{selected_unit.name} attacks {unit.name} for {damage} damage!")
-                    log_message(f"Player attacks this round: {player_attacks_this_round}/{max_attacks_per_round}")
+                    print(f"{selected_unit.name} attacks {unit.name} for {damage} damage!")
+                    print(f"Player attacks this round: {player_attacks_this_round}/{max_attacks_per_round}")
                     
                     # Deselect unit
                     selected_unit.selected = False
@@ -388,12 +328,12 @@ def handle_unit_selection(pos, clicked):
                         game_state = "ai_turn"
                         ai_turn_timer = pygame.time.get_ticks()
                         player_attacks_this_round = 0  # Reset for next round
-                        log_message("=== AI TURN BEGINS ===")
+                        print("=== AI TURN BEGINS ===")
                     else:
                         game_state = "select_attacker"
                         alive_players = sum(1 for u in player_team if u.alive)
                         remaining_attacks = min(max_attacks_per_round - player_attacks_this_round, alive_players)
-                        log_message(f"Select next unit! ({remaining_attacks} attacks remaining)")
+                        print(f"Select next unit to attack! ({remaining_attacks} attacks remaining this round)")
                     
                     return
         
@@ -402,7 +342,7 @@ def handle_unit_selection(pos, clicked):
             selected_unit.selected = False
             selected_unit = None
             game_state = "select_attacker"
-            log_message("Attack cancelled. Select a unit to attack with.")
+            print("Attack cancelled. Select a unit to attack with.")
 
 def ai_turn():
     """Handle AI turn - All AI units attack in sequence"""
@@ -426,12 +366,12 @@ def ai_turn():
         
         # Execute attack
         damage = ai_unit.attack(target)
-        log_message(f"AI ATTACK: {ai_unit.name} attacks {target.name} for {damage} damage!")
+        print(f"AI ATTACK: {ai_unit.name} attacks {target.name} for {damage} damage!")
         
         # Remove from alive list if killed
         if not target.alive:
             alive_player_units.remove(target)
-            log_message(f"{target.name} has been defeated!")
+            print(f"{target.name} has been defeated!")
     
     # Check if player team is defeated
     alive_players = sum(1 for u in player_team if u.alive)
@@ -442,8 +382,8 @@ def ai_turn():
     
     # Return to player turn
     game_state = "select_attacker"
-    log_message("=== PLAYER ROUND BEGINS ===")
-    log_message("Select your first unit to attack with!")
+    print("=== PLAYER ROUND BEGINS ===")
+    print("Select your first unit to attack with!")
 
 def draw_instructions():
     if game_state == "select_attacker":
@@ -456,7 +396,7 @@ def draw_instructions():
     elif game_state == "ai_turn":
         instruction = "AI Turn: All AI units attacking..."
     
-    draw_text(instruction, pygame.font.SysFont('Arial', 18), (255, 255, 255), 10, 10)
+    draw_text(instruction, pygame.font.SysFont('Arial', 24, bold = True), BLACK , 10, 10)
 
 # Main setup function
 def main():
@@ -476,10 +416,6 @@ def main():
 # Setup teams AFTER images are loaded
 player_team, ai_team = main()
 
-# Initialize game log
-log_message("=== GAME STARTED ===")
-log_message("Battle begins!")
-
 #define game variables
 current_fighter = 1
 total_fighters = 6  # Changed to 6 for 3v3
@@ -492,7 +428,7 @@ game_over = 0
 # Unit selection variables
 selected_unit = None  # Currently selected player unit
 game_state = "select_attacker"  # "select_attacker", "select_target", or "ai_turn"
-ai_turn_timer = 0  # Timer for AI turn delay
+ai_turn_timer = 5  # Timer for AI turn delay
 
 # Round-based turn management
 player_attacks_this_round = 0  # Track how many player units have attacked
@@ -507,100 +443,27 @@ def draw_text(text, font, text_col, x, y):
 def draw_bg():
 	screen.blit(background_img, (0, 0))
 
-def log_message(message):
-    """Add message to game console and log file"""
-    import datetime
-    
-    # Add timestamp
-    timestamp = datetime.datetime.now().strftime("%H:%M:%S")
-    console_message = f"[{timestamp}] {message}"
-    
-    # Add to console display
-    game_console.append(console_message)
-    
-    # Keep only recent messages for display
-    if len(game_console) > max_console_lines:
-        game_console.pop(0)
-    
-    # Write to log file
-    try:
-        with open("game_log.txt", "a", encoding="utf-8") as log_file:
-            log_file.write(console_message + "\n")
-    except Exception as e:
-        print(f"Error writing to log file: {e}")
-    
-    # Also print to console for debugging
-    print(console_message)
-
-def draw_console():
-    """Draw the game console panel"""
-    console_x = 800  # Start after main game area
-    console_y = 0
-    console_width = console_panel
-    console_height = screen_height
-    
-    # Draw console background
-    pygame.draw.rect(screen, GRAY, (console_x, console_y, console_width, console_height))
-    pygame.draw.rect(screen, WHITE, (console_x, console_y, console_width, console_height), 2)
-    
-    # Draw console title
-    title_text = font.render("GAME LOG", True, WHITE)
-    screen.blit(title_text, (console_x + 10, 10))
-    
-    # Draw console messages
-    y_offset = 50
-    line_height = 15
-    
-    for i, message in enumerate(game_console):
-        if y_offset + (i * line_height) < console_height - 20:  # Don't overflow
-            # Split long messages if needed
-            if len(message) > 35:
-                # Split message into multiple lines
-                words = message.split()
-                current_line = ""
-                lines = []
-                
-                for word in words:
-                    if len(current_line + word) < 70:
-                        current_line += word + " "
-                    else:
-                        if current_line:
-                            lines.append(current_line.strip())
-                        current_line = word + " "
-                
-                if current_line:
-                    lines.append(current_line.strip())
-                
-                # Draw each line
-                for line_num, line in enumerate(lines):
-                    text_surface = console_font.render(line, True, WHITE)
-                    screen.blit(text_surface, (console_x + 5, y_offset + (i * line_height) + (line_num * line_height)))
-                    if line_num > 0:
-                        i += 1  # Adjust spacing for wrapped lines
-            else:
-                text_surface = console_font.render(message, True, WHITE)
-                screen.blit(text_surface, (console_x + 5, y_offset + (i * line_height)))
-
 #function for drawing panel - UPDATED for teams
 def draw_panel():
 	#draw panel rectangle
 	screen.blit(panel_img, (0, screen_height - bottom_panel))
 	
 	# Draw player team stats
-	draw_text("PLAYER TEAM", font, RED, 20, screen_height - bottom_panel + 10)
+	draw_text(f"{player_name} - TEAM", font, RED, 20, screen_height - bottom_panel + 10)
+
 	for i, unit in enumerate(player_team):
-		y_pos = screen_height - bottom_panel + 35 + (i * 25)
+		y_pos = screen_height - bottom_panel + 45 + (i * 25)
 		status = "ALIVE" if unit.alive else "DEAD"
-		draw_text(f'{unit.name}: HP {unit.hp}/{unit.max_hp} ATK {unit.atk} DEF {unit.def_stat} EXP {unit.exp} [{status}]', 
-				 pygame.font.SysFont('Arial', 14), RED, 20, y_pos)
+		draw_text(f'{unit.name}: HP {unit.hp}/{unit.max_hp} ATK {unit.atk} DEF {unit.def_stat} EXP {unit.exp}    [{status}]', 
+				 pygame.font.SysFont('Arial', 14, bold = True), RED, 20, y_pos)
 	
 	# Draw AI team stats
 	draw_text("AI TEAM", font, RED, 450, screen_height - bottom_panel + 10)
 	for i, unit in enumerate(ai_team):
-		y_pos = screen_height - bottom_panel + 35 + (i * 25)
+		y_pos = screen_height - bottom_panel + 45 + (i * 25)
 		status = "ALIVE" if unit.alive else "DEAD"
-		draw_text(f'{unit.name}: HP {unit.hp}/{unit.max_hp} [{status}]', 
-				 pygame.font.SysFont('Arial', 14), RED, 450, y_pos)
+		draw_text(f'{unit.name}: HP {unit.hp}/{unit.max_hp}    [{status}]', 
+				 pygame.font.SysFont('Arial', 14, bold = True), RED, 450, y_pos)
 
 #create buttons
 restart_button = button.Button(screen, 330, 120, restart_img, 120, 30)
@@ -612,9 +475,6 @@ while run:
 
 	#draw background
 	draw_bg()
-
-	#draw console
-	draw_console()
 
 	#draw panel
 	draw_panel()
