@@ -2,6 +2,7 @@ import pygame
 import random
 import button
 import logging
+import sys
 
 pygame.init()
 
@@ -11,11 +12,119 @@ fps = 60
 #game window
 bottom_panel = 200
 console_panel = 600  # New: side console width
-screen_width = 800 + console_panel  # Expanded width for console
+screen_width = 1000 + console_panel  # Expanded width for console
 screen_height = 400 + bottom_panel
 
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Battle')
+
+# ========== CHANGE 1: ADD THESE CLASSES AFTER pygame.init() ==========
+# Add this right after your pygame.init() and screen setup, before the fonts
+
+class InputBox:
+    def __init__(self, x, y, w, h, text=''):
+        self.rect = pygame.Rect(x, y, w, h)
+        self.color_inactive = pygame.Color('lightskyblue3')
+        self.color_active = pygame.Color('dodgerblue2')
+        self.color = self.color_inactive
+        self.text = text
+        self.font = pygame.font.Font(None, 32)
+        self.txt_surface = self.font.render(text, True, pygame.Color('black'))
+        self.active = False
+
+    def handle_event(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if self.rect.collidepoint(event.pos):
+                self.active = not self.active
+            else:
+                self.active = False
+            self.color = self.color_active if self.active else self.color_inactive
+        
+        if event.type == pygame.KEYDOWN:
+            if self.active:
+                if event.key == pygame.K_RETURN:
+                    return True  # Enter pressed
+                elif event.key == pygame.K_BACKSPACE:
+                    self.text = self.text[:-1]
+                else:
+                    if event.unicode.isprintable():
+                        self.text += event.unicode
+                self.txt_surface = self.font.render(self.text, True, pygame.Color('black'))
+        return False
+
+    def update(self):
+        width = max(300, self.txt_surface.get_width()+10)
+        self.rect.w = width
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, pygame.Color('white'), self.rect)
+        screen.blit(self.txt_surface, (self.rect.x+5, self.rect.y+5))
+        pygame.draw.rect(screen, self.color, self.rect, 2)
+
+
+def get_player_name():
+    """Show popup to get player name"""
+    # Create semi-transparent overlay
+    overlay = pygame.Surface((screen_width, screen_height))
+    overlay.set_alpha(180)
+    overlay.fill((0, 0, 0))
+    
+    # Dialog dimensions
+    dialog_width = 500
+    dialog_height = 250
+    dialog_x = (screen_width - dialog_width) // 2
+    dialog_y = (screen_height - dialog_height) // 2
+    
+    # Create input box
+    input_box = InputBox(dialog_x + 100, dialog_y + 120, 300, 40)
+    
+    # Fonts
+    title_font = pygame.font.Font(None, 48)
+    subtitle_font = pygame.font.Font(None, 28)
+    instruction_font = pygame.font.Font(None, 24)
+    
+    done = False
+    
+    while not done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
+            
+            if input_box.handle_event(event):
+                if input_box.text.strip():
+                    return input_box.text.strip()
+        
+        input_box.update()
+        
+        # Draw overlay
+        screen.blit(overlay, (0, 0))
+        
+        # Draw dialog box
+        dialog_rect = pygame.Rect(dialog_x, dialog_y, dialog_width, dialog_height)
+        pygame.draw.rect(screen, pygame.Color('white'), dialog_rect)
+        pygame.draw.rect(screen, pygame.Color('darkblue'), dialog_rect, 4)
+        
+        # Draw title
+        title_text = title_font.render("KNIGHTS BATTLE", True, pygame.Color('darkblue'))
+        title_rect = title_text.get_rect(center=(dialog_x + dialog_width//2, dialog_y + 40))
+        screen.blit(title_text, title_rect)
+        
+        # Draw subtitle
+        subtitle_text = subtitle_font.render("Enter Commander Name", True, pygame.Color('black'))
+        subtitle_rect = subtitle_text.get_rect(center=(dialog_x + dialog_width//2, dialog_y + 80))
+        screen.blit(subtitle_text, subtitle_rect)
+        
+        # Draw input box
+        input_box.draw(screen)
+        
+        # Draw instructions
+        instruction_text = instruction_font.render("Click the box, type your name, then press Enter", True, pygame.Color('gray'))
+        instruction_rect = instruction_text.get_rect(center=(dialog_x + dialog_width//2, dialog_y + 190))
+        screen.blit(instruction_text, instruction_rect)
+        
+        pygame.display.flip()
+        clock.tick(30)
 
 #define fonts
 font = pygame.font.SysFont('Times New Roman', 26)
@@ -28,6 +137,9 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GRAY = (64, 64, 64)  # Dark gray for console background
 YELLOW = (255, 255, 0)
+
+# GET PLAYER NAME WITH POPUP
+player_name = get_player_name()
 
 # Game console for messages and logging
 game_console = []  # List to store console messages
@@ -46,9 +158,9 @@ game_over = 0
 
 #load images
 #background image
-background_img = pygame.image.load('img/Background/bg_swamp800.png').convert_alpha()
+background_img = pygame.image.load('img/Background/bg_swamp1000.png').convert_alpha()
 #panel image
-panel_img = pygame.image.load('img/Icons/panel_800_200.png').convert_alpha()
+panel_img = pygame.image.load('img/Icons/panel_1000_200.png').convert_alpha()
 #button images
 potion_img = pygame.image.load('img/Icons/potion.png').convert_alpha()
 restart_img = pygame.image.load('img/Icons/restart.png').convert_alpha()
@@ -82,7 +194,7 @@ def log_message(message):
 
 def draw_console():
     """Draw the game console on the right side"""
-    console_x = 800  # Start console after main game area
+    console_x = 1000  # Start console after main game area
     console_y = 0
     console_width = console_panel
     console_height = screen_height
@@ -93,14 +205,16 @@ def draw_console():
     # Draw console border
     pygame.draw.rect(screen, WHITE, (console_x, console_y, console_width, console_height), 2)
     
-    # Draw console title
-    draw_text("BATTLE LOG", font, WHITE, console_x + 10, 10)
+    # Show player name in console header
+    draw_text(f"COMMANDER: {player_name.upper()}", pygame.font.SysFont('Times New Roman', 20), YELLOW, console_x + 10, 10)
+    draw_text("BATTLE LOG", font, WHITE, console_x + 10, 40)
     
     # Draw console messages
     for i, message in enumerate(game_console):
         if i < max_console_lines:
-            y_pos = 50 + (i * 15)
+            y_pos = 70 + (i * 15)  # Changed from 50 to 70 to make room for commander name
             draw_text(message, console_font, WHITE, console_x + 10, y_pos)
+
 
 #create function for drawing text
 def draw_text(text, font, text_col, x, y):
@@ -113,15 +227,20 @@ def draw_bg():
 
 #function for drawing panel
 def draw_panel():
-	#draw panel rectangle
-	screen.blit(panel_img, (0, screen_height - bottom_panel))
-	#show knight stats
-	for count, i in enumerate(knight_list):
-		#show name and health
-		draw_text(f'{i.name} {count+1} HP: {i.hp}', font, RED, 100, (screen_height - bottom_panel + 10) + count * 50)
-	for count, i in enumerate(bandit_list):
-		#show name and health
-		draw_text(f'{i.name} {count+1} HP: {i.hp}', font, RED, 450, (screen_height - bottom_panel + 10) + count * 50)
+    #draw panel rectangle
+    screen.blit(panel_img, (0, screen_height - bottom_panel))
+    
+    # Show player name on panel
+    draw_text(f"Commander {player_name}'s Knights", pygame.font.SysFont('Times New Roman', 24, bold=True), WHITE, 50, screen_height - bottom_panel - 25)
+    
+    #show knight stats
+    for count, i in enumerate(knight_list):
+        #show name and health
+        draw_text(f'{i.name} HP: {i.hp}', font, RED, 185, (screen_height - bottom_panel + 30) + count * 50)
+    for count, i in enumerate(bandit_list):
+        #show name and health
+        draw_text(f'{i.name} HP: {i.hp}', font, RED, 635, (screen_height - bottom_panel + 30) + count * 50)
+
 
 #fighter class
 class Fighter():
@@ -288,18 +407,19 @@ bandit_list.append(bandit2)
 bandit_list.append(bandit3)
 
 # Create health bars for all fighters
-knight1_health_bar = HealthBar(100, screen_height - bottom_panel + 40, knight1.hp, knight1.max_hp)
-knight2_health_bar = HealthBar(100, screen_height - bottom_panel + 90, knight2.hp, knight2.max_hp)
-knight3_health_bar = HealthBar(100, screen_height - bottom_panel + 140, knight3.hp, knight3.max_hp)
+knight1_health_bar = HealthBar(200, screen_height - bottom_panel + 60, knight1.hp, knight1.max_hp)
+knight2_health_bar = HealthBar(200, screen_height - bottom_panel + 110, knight2.hp, knight2.max_hp)
+knight3_health_bar = HealthBar(200, screen_height - bottom_panel + 160, knight3.hp, knight3.max_hp)
 
-bandit1_health_bar = HealthBar(450, screen_height - bottom_panel + 40, bandit1.hp, bandit1.max_hp)
-bandit2_health_bar = HealthBar(450, screen_height - bottom_panel + 90, bandit2.hp, bandit2.max_hp)
-bandit3_health_bar = HealthBar(450, screen_height - bottom_panel + 140, bandit3.hp, bandit3.max_hp)
+bandit1_health_bar = HealthBar(650, screen_height - bottom_panel + 60, bandit1.hp, bandit1.max_hp)
+bandit2_health_bar = HealthBar(650, screen_height - bottom_panel + 110, bandit2.hp, bandit2.max_hp)
+bandit3_health_bar = HealthBar(650, screen_height - bottom_panel + 160, bandit3.hp, bandit3.max_hp)
 
 #create buttons
 restart_button = button.Button(screen, 330, 120, restart_img, 120, 30)
 
 # Initialize game log
+log_message(f"Commander {player_name} leads the battle!")
 log_message("Battle started! Knights vs Bandits")
 
 run = True
@@ -384,7 +504,7 @@ while run:
 		if current_fighter == 4:  # First bandit
 			if bandit_list[0].alive == True:
 				action_cooldown += 1
-				draw_text(f"{bandit_list[0].name} 1's turn", font, YELLOW, 10, 40)
+				draw_text(f"{bandit_list[0].name}'s turn", font, YELLOW, 10, 40)
 				if action_cooldown >= action_wait_time:
 					#attack a random alive knight
 					alive_knights = [knight for knight in knight_list if knight.alive]
@@ -401,7 +521,7 @@ while run:
 		elif current_fighter == 5:  # Second bandit
 			if bandit_list[1].alive == True:
 				action_cooldown += 1
-				draw_text(f"{bandit_list[1].name} 2's turn", font, YELLOW, 10, 40)
+				draw_text(f"{bandit_list[1].name}'s turn", font, YELLOW, 10, 40)
 				if action_cooldown >= action_wait_time:
 					#attack a random alive knight
 					alive_knights = [knight for knight in knight_list if knight.alive]
@@ -418,7 +538,7 @@ while run:
 		elif current_fighter == 6:  # Third bandit
 			if bandit_list[2].alive == True:
 				action_cooldown += 1
-				draw_text(f"{bandit_list[2].name} 3's turn", font, YELLOW, 10, 40)
+				draw_text(f"{bandit_list[2].name}'s turn", font, YELLOW, 10, 40)
 				if action_cooldown >= action_wait_time:
 					#attack a random alive knight
 					alive_knights = [knight for knight in knight_list if knight.alive]

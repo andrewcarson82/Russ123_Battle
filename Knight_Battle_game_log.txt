@@ -7,3 +7,57 @@
 [15:42:48] Bandit attacks Knight for 19 damage!
 [15:42:50] Bandit attacks Knight for 6 damage!
 [15:42:50] --- New Round ---
+[21:41:23] Battle started! Knights vs Bandits
+[21:41:29] Knight1 attacks Bandit1 for 18 damage!
+[21:41:31] Knight2 attacks Bandit2 for 14 damage!
+[21:41:34] Knight3 attacks Bandit3 for 18 damage!
+[21:41:35] Bandit1 attacks Knight3 for 7 damage!
+[21:41:37] Bandit2 attacks Knight3 for 16 damage!
+[21:41:38] Bandit3 attacks Knight1 for 13 damage!
+[21:41:38] --- New Round ---
+[21:50:09] Commander Andy leads the battle!
+[21:50:09] Battle started! Knights vs Bandits
+[21:51:29] Battle started! Knights vs Bandits
+[21:56:17] Commander Andy leads the battle!
+[21:56:17] Battle started! Knights vs Bandits
+[21:56:27] Knight1 attacks Bandit1 for 27 damage!
+[21:56:33] Knight2 attacks Bandit2 for 19 damage!
+[21:56:35] Knight3 attacks Bandit3 for 25 damage!
+[21:56:36] Bandit1 attacks Knight1 for 11 damage!
+[21:56:38] Bandit2 attacks Knight3 for 18 damage!
+[21:56:39] Bandit3 attacks Knight3 for 18 damage!
+[21:56:39] --- New Round ---
+[21:57:41] Commander Andy leads the battle!
+[21:57:41] Battle started! Knights vs Bandits
+[22:05:46] Commander Andy leads the battle!
+[22:05:46] Battle started! Knights vs Bandits
+[22:06:53] Commander Andy leads the battle!
+[22:06:53] Battle started! Knights vs Bandits
+[22:10:40] Commander Andy leads the battle!
+[22:10:40] Battle started! Knights vs Bandits
+[22:11:27] Commander Andy leads the battle!
+[22:11:27] Battle started! Knights vs Bandits
+[22:12:18] Commander Andy leads the battle!
+[22:12:18] Battle started! Knights vs Bandits
+[22:14:03] Commander Andy leads the battle!
+[22:14:03] Battle started! Knights vs Bandits
+[22:18:23] Commander ZZZZZZZZZZZZZZZ leads the battle!
+[22:18:23] Battle started! Knights vs Bandits
+[22:19:31] Commander Andy leads the battle!
+[22:19:31] Battle started! Knights vs Bandits
+[22:19:56] Commander Andy leads the battle!
+[22:19:56] Battle started! Knights vs Bandits
+[22:20:16] Commander 1 leads the battle!
+[22:20:16] Battle started! Knights vs Bandits
+[22:21:31] Commander Andy leads the battle!
+[22:21:31] Battle started! Knights vs Bandits
+[22:22:25] Commander a leads the battle!
+[22:22:25] Battle started! Knights vs Bandits
+[22:22:48] Commander a leads the battle!
+[22:22:48] Battle started! Knights vs Bandits
+[22:23:55] Commander Andy leads the battle!
+[22:23:55] Battle started! Knights vs Bandits
+[22:24:17] Commander Andy leads the battle!
+[22:24:17] Battle started! Knights vs Bandits
+[22:24:39] Commander Andy leads the battle!
+[22:24:39] Battle started! Knights vs Bandits
