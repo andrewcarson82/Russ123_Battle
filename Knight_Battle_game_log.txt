@@ -1,0 +1,9 @@
+[15:13:52] Battle started! Knights vs Bandits
+[15:42:31] Battle started! Knights vs Bandits
+[15:42:42] Knight attacks Bandit for 12 damage!
+[15:42:44] Knight attacks Bandit for 22 damage!
+[15:42:45] Knight attacks Bandit for 24 damage!
+[15:42:47] Bandit attacks Knight for 8 damage!
+[15:42:48] Bandit attacks Knight for 19 damage!
+[15:42:50] Bandit attacks Knight for 6 damage!
+[15:42:50] --- New Round ---

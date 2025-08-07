@@ -18,7 +18,7 @@ screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('Battle')
 
 #define fonts
-font = pygame.font.SysFont('Times New Roman', 26)
+font = pygame.font.SysFont('Arial', 26)
 console_font = pygame.font.SysFont('Courier', 12)  # Monospace font for console
 
 #define colours
@@ -33,7 +33,7 @@ YELLOW = (255, 255, 0)
 game_console = []  # List to store console messages
 max_console_lines = 35  # Maximum lines to show in console
 
-#load images - MOVED BEFORE SETUP
+#load images
 #Player Images
 player_warrior_img = pygame.image.load('img/player_warrior.png').convert_alpha()
 player_tank_img = pygame.image.load('img/player_tank.png').convert_alpha()
@@ -115,11 +115,12 @@ def player_team_setup():
     """Setup player team with console input"""
     print("=== TEAM SETUP ===")
     print("You will create a team of 3 units.")
-    print("Each unit can be either a Warrior or Tanker.")
+    print("Each unit can be either a Warrior or Tank.")
     print()
     
-    # Get player name once
+    # Get player name
     while True:
+        global player_name
         player_name = input("Enter your name: ").strip()
         if player_name:
             break
@@ -137,7 +138,7 @@ def player_team_setup():
         while True:
             print("Choose profession:")
             print("1. Warrior (High Attack: 5-20, Low Defense: 1-10)")
-            print("2. Tanker (Low Attack: 1-10, High Defense: 5-15)")
+            print("2. Tank (Low Attack: 1-10, High Defense: 5-15)")
             choice = input("Enter 1 or 2: ").strip()
             
             if choice == "1":
@@ -184,6 +185,35 @@ def create_ai_team():
     input("Press Enter to continue...")
     return team
 
+def text1(word,x,y):
+    font = pygame.font.SysFont(None, 25)
+    text = font.render("{}".format(word), True, RED)
+    return screen.blit(text,(x,y))
+
+def inpt():
+    word=""
+    text1("Please enter your name: ",300,400) #example asking name
+    pygame.display.flip()
+    done = True
+    while done:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                pygame.quit()
+                quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_a:
+                    word+=str(chr(event.key))
+                if event.key == pygame.K_b:
+                    word+=chr(event.key)
+                if event.key == pygame.K_c:
+                    word+=chr(event.key)
+                if event.key == pygame.K_d:
+                    word+=chr(event.key)
+                if event.key == pygame.K_RETURN:
+                    done=False
+                #events...
+    return text1(word,700,30)
+
 #fighter class
 class Fighter:
     def __init__(self, x, y, name, team="player"):
@@ -205,8 +235,6 @@ class Fighter:
         # Visual properties
         self.rect = pygame.Rect(x, y, 80, 100)
         self.image = None
-        
-        # Load appropriate image based on class type
         self.load_image()
     
     def load_image(self):
@@ -238,7 +266,7 @@ class Fighter:
             image_rect = self.image.get_rect(center=self.rect.center)
             screen.blit(self.image, image_rect)
         
-        # Draw name below unit (only if alive)
+        # Draw name below unit
         if self.alive:
             unit_font = pygame.font.SysFont('Arial', 12)
             name_text = unit_font.render(self.name, True, (255, 255, 255))
@@ -250,7 +278,7 @@ class Fighter:
         random_factor = random.randint(-5, 10)
         damage = self.atk - target.def_stat + random_factor
         
-        # DEBUG: Print the calculation
+        # DEBUG: Print the calculation in the log
         print(f"DEBUG: {self.name} ATK({self.atk}) - {target.name} DEF({target.def_stat}) + random({random_factor}) = {damage}")
         
         # Ensure minimum damage of 1 (changed from 0)
@@ -306,11 +334,8 @@ class Fighter:
 class Warrior(Fighter):
     def __init__(self, x, y, name, team="player"):
         super().__init__(x, y, name, team)
-        
-        # Assignment specs: ATK 5-20, DEF 1-10
         self.atk = random.randint(5, 20)
         self.def_stat = random.randint(1, 10)
-        
         self.load_image()
     
     def load_image(self):
@@ -325,7 +350,6 @@ class Tank(Fighter):
     def __init__(self, x, y, name, team="player"):
         super().__init__(x, y, name, team)
         
-        # Assignment specs: ATK 1-10, DEF 5-15
         self.atk = random.randint(1, 10)
         self.def_stat = random.randint(5, 15)
         
@@ -587,7 +611,7 @@ def draw_panel():
 	screen.blit(panel_img, (0, screen_height - bottom_panel))
 	
 	# Draw player team stats
-	draw_text("PLAYER TEAM", font, RED, 20, screen_height - bottom_panel + 10)
+	draw_text(player_name + " TEAM", font, RED, 20, screen_height - bottom_panel + 10)
 	for i, unit in enumerate(player_team):
 		y_pos = screen_height - bottom_panel + 35 + (i * 25)
 		status = "ALIVE" if unit.alive else "DEAD"
@@ -595,7 +619,7 @@ def draw_panel():
 				 pygame.font.SysFont('Arial', 14), RED, 20, y_pos)
 	
 	# Draw AI team stats
-	draw_text("AI TEAM", font, RED, 450, screen_height - bottom_panel + 10)
+	draw_text("ENEMY TEAM", font, RED, 450, screen_height - bottom_panel + 10)
 	for i, unit in enumerate(ai_team):
 		y_pos = screen_height - bottom_panel + 35 + (i * 25)
 		status = "ALIVE" if unit.alive else "DEAD"
@@ -632,8 +656,7 @@ while run:
 
 	# Handle AI turn with delay
 	if game_state == "ai_turn":
-		# Wait 1.5 seconds before AI acts (so player can see what happened)
-		if pygame.time.get_ticks() - ai_turn_timer > 1500:
+		if pygame.time.get_ticks() - ai_turn_timer > 3000: # Wait 3 seconds before AI acts (so player can see what happened)
 			ai_turn()
 
 	#control player actions (only during player turns)

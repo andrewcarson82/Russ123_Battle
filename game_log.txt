@@ -203,3 +203,247 @@
 [21:07:08] Battle begins!
 [21:07:53] === GAME STARTED ===
 [21:07:53] Battle begins!
+[08:43:57] === GAME STARTED ===
+[08:43:57] Battle begins!
+[08:44:02] Selected andy_Warrior1 to attack with.
+[08:44:04] andy_Warrior1 attacks AI27 for 5 damage!
+[08:44:04] Player attacks this round: 1/3
+[08:44:04] Select next unit! (2 attacks remaining)
+[08:44:06] Selected andy_Warrior2 to attack with.
+[08:44:07] andy_Warrior2 attacks AI70 for 6 damage!
+[08:44:07] Player attacks this round: 2/3
+[08:44:07] Select next unit! (1 attacks remaining)
+[08:44:08] Selected andy_Warrior3 to attack with.
+[08:44:09] andy_Warrior3 attacks AI20 for 1 damage!
+[08:44:09] Player attacks this round: 3/3
+[08:44:09] === AI TURN BEGINS ===
+[08:44:11] AI ATTACK: AI27 attacks andy_Warrior1 for 4 damage!
+[08:44:11] AI ATTACK: AI70 attacks andy_Warrior1 for 7 damage!
+[08:44:11] AI ATTACK: AI20 attacks andy_Warrior1 for 5 damage!
+[08:44:11] === PLAYER ROUND BEGINS ===
+[08:44:11] Select your first unit to attack with!
+[09:23:03] === GAME STARTED ===
+[09:23:03] Battle begins!
+[09:23:08] Selected andy_Warrior1 to attack with.
+[09:23:09] andy_Warrior1 attacks AI41 for 9 damage!
+[09:23:09] Player attacks this round: 1/3
+[09:23:09] Select next unit! (2 attacks remaining)
+[09:23:12] Selected andy_Warrior2 to attack with.
+[09:23:13] andy_Warrior2 attacks AI60 for 7 damage!
+[09:23:13] Player attacks this round: 2/3
+[09:23:13] Select next unit! (1 attacks remaining)
+[09:23:18] Selected andy_Warrior3 to attack with.
+[09:23:19] AI31 gains bonus EXP for taking heavy damage!
+[09:23:19] andy_Warrior3 attacks AI31 for 27 damage!
+[09:23:19] Player attacks this round: 3/3
+[09:23:19] === AI TURN BEGINS ===
+[09:23:21] AI ATTACK: AI41 attacks andy_Warrior1 for 1 damage!
+[09:23:21] AI ATTACK: AI60 attacks andy_Warrior1 for 10 damage!
+[09:23:21] AI ATTACK: AI31 attacks andy_Warrior1 for 1 damage!
+[09:23:21] === PLAYER ROUND BEGINS ===
+[09:23:21] Select your first unit to attack with!
+[09:23:26] Selected andy_Warrior3 to attack with.
+[09:23:27] AI31 gains bonus EXP for taking heavy damage!
+[09:23:27] andy_Warrior3 attacks AI31 for 29 damage!
+[09:23:27] Player attacks this round: 1/3
+[09:23:27] Select next unit! (2 attacks remaining)
+[09:23:29] Selected andy_Warrior3 to attack with.
+[09:23:30] AI31 gains bonus EXP for taking heavy damage!
+[09:23:30] andy_Warrior3 attacks AI31 for 20 damage!
+[09:23:30] Player attacks this round: 2/3
+[09:23:30] Select next unit! (1 attacks remaining)
+[09:23:31] Selected andy_Warrior3 to attack with.
+[09:23:33] AI31 has been defeated!
+[09:23:33] andy_Warrior3 leveled up! Now Rank 2
+[09:23:33] AI31 gains bonus EXP for taking heavy damage!
+[09:23:33] andy_Warrior3 attacks AI31 for 29 damage!
+[09:23:33] Player attacks this round: 3/3
+[09:23:33] === AI TURN BEGINS ===
+[09:23:34] AI ATTACK: AI41 attacks andy_Warrior1 for 1 damage!
+[09:23:34] AI ATTACK: AI60 attacks andy_Warrior1 for 1 damage!
+[09:23:34] === PLAYER ROUND BEGINS ===
+[09:23:34] Select your first unit to attack with!
+[09:23:36] Selected andy_Warrior3 to attack with.
+[09:23:37] andy_Warrior3 attacks AI60 for 7 damage!
+[09:23:37] Player attacks this round: 1/3
+[09:23:37] Select next unit! (2 attacks remaining)
+[09:23:38] Selected andy_Warrior3 to attack with.
+[09:23:39] andy_Warrior3 attacks AI60 for 10 damage!
+[09:23:39] Player attacks this round: 2/3
+[09:23:39] Select next unit! (1 attacks remaining)
+[09:23:40] Selected andy_Warrior3 to attack with.
+[09:23:42] andy_Warrior3 attacks AI60 for 1 damage!
+[09:23:42] Player attacks this round: 3/3
+[09:23:42] === AI TURN BEGINS ===
+[09:23:43] AI ATTACK: AI41 attacks andy_Warrior1 for 1 damage!
+[09:23:43] andy_Warrior1 gains bonus EXP for taking heavy damage!
+[09:23:43] AI ATTACK: AI60 attacks andy_Warrior1 for 12 damage!
+[09:23:43] === PLAYER ROUND BEGINS ===
+[09:23:43] Select your first unit to attack with!
+[09:23:48] Selected andy_Warrior3 to attack with.
+[09:23:49] andy_Warrior3 attacks AI60 for 1 damage!
+[09:23:49] Player attacks this round: 1/3
+[09:23:49] Select next unit! (2 attacks remaining)
+[09:23:50] Selected andy_Warrior3 to attack with.
+[09:23:51] AI60 leveled up! Now Rank 2
+[09:23:51] AI60 gains bonus EXP for taking heavy damage!
+[09:23:51] andy_Warrior3 attacks AI60 for 12 damage!
+[09:23:51] Player attacks this round: 2/3
+[09:23:51] Select next unit! (1 attacks remaining)
+[09:23:52] Selected andy_Warrior3 to attack with.
+[09:23:53] AI60 gains bonus EXP for taking heavy damage!
+[09:23:53] andy_Warrior3 attacks AI60 for 11 damage!
+[09:23:53] Player attacks this round: 3/3
+[09:23:53] === AI TURN BEGINS ===
+[09:23:55] AI ATTACK: AI41 attacks andy_Warrior1 for 1 damage!
+[09:23:55] AI ATTACK: AI60 attacks andy_Warrior1 for 4 damage!
+[09:23:55] === PLAYER ROUND BEGINS ===
+[09:23:55] Select your first unit to attack with!
+[09:23:56] Selected andy_Warrior3 to attack with.
+[09:23:57] andy_Warrior3 attacks AI60 for 8 damage!
+[09:23:57] Player attacks this round: 1/3
+[09:23:57] Select next unit! (2 attacks remaining)
+[09:23:59] Selected andy_Warrior3 to attack with.
+[09:24:00] andy_Warrior3 attacks AI60 for 3 damage!
+[09:24:00] Player attacks this round: 2/3
+[09:24:00] Select next unit! (1 attacks remaining)
+[09:24:01] Selected andy_Warrior3 to attack with.
+[09:24:02] AI60 gains bonus EXP for taking heavy damage!
+[09:24:02] andy_Warrior3 attacks AI60 for 12 damage!
+[09:24:02] Player attacks this round: 3/3
+[09:24:02] === AI TURN BEGINS ===
+[09:24:03] AI ATTACK: AI41 attacks andy_Warrior1 for 1 damage!
+[09:24:03] AI ATTACK: AI60 attacks andy_Warrior1 for 1 damage!
+[09:24:03] === PLAYER ROUND BEGINS ===
+[09:24:03] Select your first unit to attack with!
+[09:24:06] Selected andy_Warrior3 to attack with.
+[09:24:07] AI60 leveled up! Now Rank 3
+[09:24:07] andy_Warrior3 attacks AI60 for 5 damage!
+[09:24:07] Player attacks this round: 1/3
+[09:24:07] Select next unit! (2 attacks remaining)
+[09:24:08] Selected andy_Warrior3 to attack with.
+[09:24:09] andy_Warrior3 attacks AI60 for 5 damage!
+[09:24:09] Player attacks this round: 2/3
+[09:24:09] Select next unit! (1 attacks remaining)
+[09:24:10] Selected andy_Warrior3 to attack with.
+[09:24:11] AI60 gains bonus EXP for taking heavy damage!
+[09:24:11] andy_Warrior3 attacks AI60 for 13 damage!
+[09:24:11] Player attacks this round: 3/3
+[09:24:11] === AI TURN BEGINS ===
+[09:24:13] AI ATTACK: AI41 attacks andy_Warrior1 for 1 damage!
+[09:24:13] AI ATTACK: AI60 attacks andy_Warrior1 for 3 damage!
+[09:24:13] === PLAYER ROUND BEGINS ===
+[09:24:13] Select your first unit to attack with!
+[09:24:22] Selected andy_Warrior3 to attack with.
+[09:24:23] AI60 has been defeated!
+[09:24:23] andy_Warrior3 leveled up! Now Rank 3
+[09:24:23] andy_Warrior3 attacks AI60 for 7 damage!
+[09:24:23] Player attacks this round: 1/3
+[09:24:23] Select next unit! (2 attacks remaining)
+[09:24:24] Selected andy_Warrior3 to attack with.
+[09:24:25] AI41 gains bonus EXP for taking heavy damage!
+[09:24:25] andy_Warrior3 attacks AI41 for 12 damage!
+[09:24:25] Player attacks this round: 2/3
+[09:24:25] Select next unit! (1 attacks remaining)
+[09:24:27] Selected andy_Warrior3 to attack with.
+[09:24:28] AI41 gains bonus EXP for taking heavy damage!
+[09:24:28] andy_Warrior3 attacks AI41 for 19 damage!
+[09:24:28] Player attacks this round: 3/3
+[09:24:28] === AI TURN BEGINS ===
+[09:24:29] AI ATTACK: AI41 attacks andy_Warrior1 for 2 damage!
+[09:24:29] === PLAYER ROUND BEGINS ===
+[09:24:29] Select your first unit to attack with!
+[09:24:34] Selected andy_Warrior3 to attack with.
+[09:24:35] AI41 gains bonus EXP for taking heavy damage!
+[09:24:35] andy_Warrior3 attacks AI41 for 12 damage!
+[09:24:35] Player attacks this round: 1/3
+[09:24:35] Select next unit! (2 attacks remaining)
+[09:24:37] Selected andy_Warrior3 to attack with.
+[09:24:38] andy_Warrior3 attacks AI41 for 8 damage!
+[09:24:38] Player attacks this round: 2/3
+[09:24:38] Select next unit! (1 attacks remaining)
+[09:24:39] Selected andy_Warrior3 to attack with.
+[09:24:39] andy_Warrior3 attacks AI41 for 9 damage!
+[09:24:39] Player attacks this round: 3/3
+[09:24:39] === AI TURN BEGINS ===
+[09:24:41] andy_Warrior1 leveled up! Now Rank 2
+[09:24:41] AI ATTACK: AI41 attacks andy_Warrior1 for 1 damage!
+[09:24:41] === PLAYER ROUND BEGINS ===
+[09:24:41] Select your first unit to attack with!
+[09:24:43] Selected andy_Warrior3 to attack with.
+[09:24:44] AI41 gains bonus EXP for taking heavy damage!
+[09:24:44] andy_Warrior3 attacks AI41 for 16 damage!
+[09:24:44] Player attacks this round: 1/3
+[09:24:44] Select next unit! (2 attacks remaining)
+[09:24:45] Selected andy_Warrior3 to attack with.
+[09:24:46] AI41 has been defeated!
+[09:24:46] AI41 gains bonus EXP for taking heavy damage!
+[09:24:46] andy_Warrior3 attacks AI41 for 15 damage!
+[09:24:46] Player attacks this round: 2/3
+[09:27:47] === GAME STARTED ===
+[09:27:47] Battle begins!
+[09:27:54] Selected andy_Warrior3 to attack with.
+[09:27:55] andy_Warrior3 attacks AI54 for 7 damage!
+[09:27:55] Player attacks this round: 1/3
+[09:27:55] Select next unit! (2 attacks remaining)
+[09:27:57] Selected andy_Warrior3 to attack with.
+[09:27:58] AI54 gains bonus EXP for taking heavy damage!
+[09:27:58] andy_Warrior3 attacks AI54 for 21 damage!
+[09:27:58] Player attacks this round: 2/3
+[09:27:58] Select next unit! (1 attacks remaining)
+[09:27:59] Selected andy_Warrior3 to attack with.
+[09:28:00] AI54 gains bonus EXP for taking heavy damage!
+[09:28:00] andy_Warrior3 attacks AI54 for 17 damage!
+[09:28:00] Player attacks this round: 3/3
+[09:28:00] === AI TURN BEGINS ===
+[09:28:03] AI ATTACK: AI48 attacks andy_Warrior1 for 6 damage!
+[09:28:03] AI ATTACK: AI45 attacks andy_Warrior1 for 3 damage!
+[09:28:03] AI ATTACK: AI54 attacks andy_Warrior1 for 1 damage!
+[09:28:03] === PLAYER ROUND BEGINS ===
+[09:28:03] Select your first unit to attack with!
+[09:29:28] === GAME STARTED ===
+[09:29:28] Battle begins!
+[09:30:12] === GAME STARTED ===
+[09:30:12] Battle begins!
+[09:31:32] === GAME STARTED ===
+[09:31:32] Battle begins!
+[09:32:13] === GAME STARTED ===
+[09:32:13] Battle begins!
+[09:32:24] === GAME STARTED ===
+[09:32:24] Battle begins!
+[09:35:25] Selected andy_Warrior1 to attack with.
+[09:35:26] andy_Warrior1 attacks AI88 for 1 damage!
+[09:35:26] Player attacks this round: 1/3
+[09:35:26] Select next unit! (2 attacks remaining)
+[09:35:32] Selected andy_Warrior2 to attack with.
+[09:35:33] andy_Warrior2 attacks AI88 for 1 damage!
+[09:35:33] Player attacks this round: 2/3
+[09:35:33] Select next unit! (1 attacks remaining)
+[09:35:34] Selected andy_Warrior3 to attack with.
+[09:35:35] AI23 gains bonus EXP for taking heavy damage!
+[09:35:35] andy_Warrior3 attacks AI23 for 13 damage!
+[09:35:35] Player attacks this round: 3/3
+[09:35:35] === AI TURN BEGINS ===
+[09:45:10] === GAME STARTED ===
+[09:45:10] Battle begins!
+[10:10:42] === GAME STARTED ===
+[10:10:42] Battle begins!
+[10:10:49] Selected andy_Warrior1 to attack with.
+[10:10:50] andy_Warrior1 attacks AI16 for 1 damage!
+[10:10:50] Player attacks this round: 1/3
+[10:10:50] Select next unit! (2 attacks remaining)
+[15:09:44] Battle started! Knights vs Bandits
+[15:09:52] Knight attacks Bandit for 17 damage!
+[15:09:53] Knight attacks Bandit for 24 damage!
+[15:09:55] Knight attacks Bandit for 24 damage!
+[15:09:57] Bandit attacks Knight for 16 damage!
+[15:09:58] Bandit attacks Knight for 17 damage!
+[15:10:00] Bandit attacks Knight for 13 damage!
+[15:10:00] --- New Round ---
+[15:10:27] Knight attacks Bandit for 22 damage!
+[15:10:29] Knight attacks Bandit for 24 damage!
+[15:10:31] Knight attacks Bandit for 20 damage!
+[15:10:32] Bandit attacks Knight for 13 damage!
+[15:10:34] Bandit attacks Knight for 16 damage!
+[15:10:35] Bandit attacks Knight for 9 damage!
+[15:10:35] --- New Round ---
